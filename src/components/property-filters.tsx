@@ -1,14 +1,15 @@
 "use client";
 
 import { type ChangeEvent } from "react";
-import { bhkOptions, typeOptions, locationOptions, priceBracketOptions } from "@/data/properties";
+import {
+  bhkOptions,
+  typeOptions,
+  locationOptions,
+  priceBracketOptions,
+  type Filters,
+} from "@/data/properties";
 
-export type Filters = {
-  location: string;
-  type: string;
-  bhk: string;
-  budget: string;
-};
+export type { Filters } from "@/data/properties";
 
 const selectClassName =
   "w-full rounded-xl border border-[#dfe3df] bg-white px-3 py-3 text-sm text-[#25373d] outline-none transition focus:border-[#1a2b2f] focus:ring-2 focus:ring-[#dfe9e8]";
@@ -16,7 +17,7 @@ const selectClassName =
 type PropertyFiltersProps = {
   filters: Filters;
   onChange: (nextFilters: Filters) => void;
-  onReset: () => void;
+  onReset?: () => void;
 };
 
 export function PropertyFilters({ filters, onChange, onReset }: PropertyFiltersProps) {
@@ -35,7 +36,7 @@ export function PropertyFilters({ filters, onChange, onReset }: PropertyFiltersP
         <h2 className="text-lg font-semibold text-[#1a2b2f]">Filter properties</h2>
         <button
           type="button"
-          onClick={onReset}
+          onClick={onReset ?? (() => undefined)}
           className="text-sm font-medium text-[#3b4e52] underline-offset-4 transition hover:text-[#1a2b2f] hover:underline"
         >
           Clear filters

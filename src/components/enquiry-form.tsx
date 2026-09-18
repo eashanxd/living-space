@@ -171,7 +171,7 @@ export function EnquiryForm({ property }: EnquiryFormProps) {
             onChange={(event) => updateField("phone", event)}
             aria-invalid={Boolean(errors.phone)}
             className={`${inputClassName} ${errors.phone ? "border-[#b5534d] bg-[#fff9f8]" : "border-[#dfe3df]"}`}
-            placeholder="+91 98765 43210"
+            placeholder="+91 92662 39923"
           />
           {errors.phone ? <p className="mt-2 text-sm text-[#9a4038]">{errors.phone}</p> : null}
         </div>
@@ -189,7 +189,7 @@ export function EnquiryForm({ property }: EnquiryFormProps) {
             onChange={(event) => updateField("email", event)}
             aria-invalid={Boolean(errors.email)}
             className={`${inputClassName} ${errors.email ? "border-[#b5534d] bg-[#fff9f8]" : "border-[#dfe3df]"}`}
-            placeholder="you@example.com"
+            placeholder="livingspace.del@gmail.com"
           />
           {errors.email ? <p className="mt-2 text-sm text-[#9a4038]">{errors.email}</p> : null}
         </div>

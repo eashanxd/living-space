@@ -31,16 +31,16 @@ export default async function ContactPage({
             <div className="mt-8 space-y-4">
               <div className="rounded-2xl border border-[#e7e0d7] bg-[#faf7f3] p-4">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#7c6b5f]">Email</p>
-                <p className="mt-2 text-sm font-medium text-[#1a2b2f]">hello@livingspace.in</p>
+                <p className="mt-2 text-sm font-medium text-[#1a2b2f]">livingspace.del@gmail.com</p>
               </div>
               <div className="rounded-2xl border border-[#e7e0d7] bg-[#faf7f3] p-4">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#7c6b5f]">Phone</p>
-                <p className="mt-2 text-sm font-medium text-[#1a2b2f]">+91 98765 43210</p>
+                <p className="mt-2 text-sm font-medium text-[#1a2b2f]">+91 92662 39923</p>
               </div>
               <div className="rounded-2xl border border-[#e7e0d7] bg-[#faf7f3] p-4">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#7c6b5f]">Hours</p>
-                <p className="mt-2 text-sm font-medium text-[#1a2b2f]">Monday to Saturday</p>
-                <p className="text-sm text-[#54666b]">10:00 AM – 7:00 PM</p>
+                <p className="mt-2 text-sm font-medium text-[#1a2b2f]">Wednesday to Monday</p>
+                <p className="text-sm text-[#54666b]">10:00 AM – 8:00 PM</p>
               </div>
             </div>
           </div>

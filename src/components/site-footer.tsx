@@ -54,7 +54,7 @@ export function SiteFooter() {
       <div className="border-t border-[#e3dace]">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-sm text-[#5f5a56] sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <p>© 2026 LIVING SPACE. All rights reserved.</p>
-          <p>hello@livingspace.in • +91 98765 43210</p>
+          <p>livingspace.del@gmail.com • +91 92662 39923</p>
         </div>
       </div>
     </footer>

@@ -158,11 +158,51 @@ export const bhkOptions = ["Any", "1", "2", "3", "4+"];
 
 export const priceBracketOptions = [
   { label: "Any budget", value: "all" },
-  { label: "Under ₹1.5 Cr", value: "0-15000000" },
-  { label: "₹1.5 Cr - ₹3 Cr", value: "15000000-30000000" },
-  { label: "₹3 Cr - ₹5 Cr", value: "30000000-50000000" },
-  { label: "Above ₹5 Cr", value: "50000000-9999999999" },
+  { label: "Up to ₹1.5 Cr", value: "15000000" },
+  { label: "Up to ₹3 Cr", value: "30000000" },
+  { label: "Up to ₹5 Cr", value: "50000000" },
 ];
+
+export type Filters = {
+  location: string;
+  type: string;
+  bhk: string;
+  budget: string;
+};
+
+export const defaultFilters: Filters = {
+  location: "all",
+  type: "all",
+  bhk: "all",
+  budget: "all",
+};
+
+export function getFiltersFromSearchParams(searchParams: URLSearchParams | Record<string, string | undefined>): Filters {
+  const getValue = (key: keyof Filters) =>
+    searchParams instanceof URLSearchParams ? searchParams.get(key) ?? "all" : searchParams[key] ?? "all";
+
+  return {
+    location: getValue("location"),
+    type: getValue("type"),
+    bhk: getValue("bhk"),
+    budget: getValue("budget"),
+  };
+}
+
+export function filterProperties(properties: Property[], filters: Filters) {
+  return properties.filter((property) => {
+    const locationMatch = filters.location === "all" || property.location.startsWith(filters.location);
+    const typeMatch = filters.type === "all" || property.type === filters.type;
+    const bhkMatch =
+      filters.bhk === "all" ||
+      (property.bhk !== undefined &&
+        (filters.bhk === "4+" ? property.bhk >= 4 : String(property.bhk) === filters.bhk));
+    const budgetLimit = filters.budget === "all" ? undefined : Number(filters.budget);
+    const budgetMatch = budgetLimit === undefined || property.price <= budgetLimit;
+
+    return locationMatch && typeMatch && bhkMatch && budgetMatch;
+  });
+}
 
 export function getPropertyById(propertyId: string) {
   return demoProperties.find((property) => property.propertyId === propertyId);

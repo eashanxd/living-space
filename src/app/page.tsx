@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { HomePropertySearch } from "@/components/home-property-search";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -86,47 +87,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="animate-fade-up rounded-[2rem] border border-[#e3dace] bg-white/90 p-5 shadow-[0_18px_45px_rgba(28,43,48,0.08)] backdrop-blur-sm">
-              <div className="rounded-[1.5rem] bg-[#e9e1d8] p-5">
-                <div className="mb-4 flex items-center justify-between text-sm uppercase tracking-[0.18em] text-[#6b6258]">
-                  <span>Property Search</span>
-                  <span>Live</span>
-                </div>
-
-                <div className="space-y-4 rounded-[1.25rem] bg-white p-4 shadow-sm">
-                  <div>
-                    <label className="mb-2 block text-xs font-medium uppercase tracking-[0.18em] text-[#6b6258]">
-                      Location
-                    </label>
-                    <div className="rounded-xl border border-[#e3dace] bg-[#f9f7f3] px-3 py-3 text-sm text-[#364a4f]">
-                      Delhi NCR
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="mb-2 block text-xs font-medium uppercase tracking-[0.18em] text-[#6b6258]">
-                      Property type
-                    </label>
-                    <div className="rounded-xl border border-[#e3dace] bg-[#f9f7f3] px-3 py-3 text-sm text-[#364a4f]">
-                      Apartment, Villa, Commercial
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="mb-2 block text-xs font-medium uppercase tracking-[0.18em] text-[#6b6258]">
-                      Budget
-                    </label>
-                    <div className="rounded-xl border border-[#e3dace] bg-[#f9f7f3] px-3 py-3 text-sm text-[#364a4f]">
-                      ₹50L – ₹5Cr
-                    </div>
-                  </div>
-
-                  <Button href="/properties" className="w-full">
-                    Search properties
-                  </Button>
-                </div>
-              </div>
-            </div>
+            <HomePropertySearch />
           </div>
         </section>
 
