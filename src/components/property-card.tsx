@@ -7,10 +7,10 @@ type PropertyCardProps = {
 
 export function PropertyCard({ property }: PropertyCardProps) {
   return (
-    <article className="group overflow-hidden rounded-[1.5rem] border border-[#e7e0d7] bg-white shadow-[0_14px_30px_rgba(22,32,33,0.04)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#d4c9bf] hover:shadow-[0_18px_35px_rgba(22,32,33,0.08)] active:translate-y-0">
+    <article className="group overflow-hidden rounded-[1.5rem] border border-[#e7e0d7] bg-white shadow-[0_14px_30px_rgba(22,32,33,0.04)] transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-[#d4c9bf] hover:shadow-[0_18px_35px_rgba(22,32,33,0.08)] active:translate-y-0">
       <div className="p-4">
         <div
-          className="flex h-56 items-end justify-between overflow-hidden rounded-[1.2rem] border border-white/50 p-4 transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+          className="flex h-56 items-end justify-between overflow-hidden rounded-[1.2rem] border border-white/50 p-4 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.015]"
           style={{ background: property.image }}
         >
           <span className="rounded-full bg-white/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#354c51]">

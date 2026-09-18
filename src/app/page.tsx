@@ -46,10 +46,10 @@ export default function Home() {
       <SiteHeader />
 
       <main className="relative flex-1 overflow-hidden bg-[#f8f5f0] text-[#1a2b2f]">
-        <div className="homepage-wallpaper animate-soft-pulse" aria-hidden="true" />
+        <section className="relative overflow-hidden border-b border-[#e7e0d7] bg-[#f4efe9]/55 backdrop-blur-[1px]">
+          <div className="homepage-wallpaper animate-soft-pulse" aria-hidden="true" />
 
-        <section className="relative border-b border-[#e7e0d7] bg-[#f4efe9]/80 backdrop-blur-[1px]">
-          <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8 lg:py-24">
+          <div className="relative z-10 mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8 lg:py-24">
             <div className="flex flex-col justify-center">
               <div className="animate-fade-up mb-5 inline-flex w-fit items-center rounded-full border border-[#d7d0c6] bg-white/85 px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[#586d71] shadow-[0_5px_15px_rgba(27,45,50,0.04)]">
                 Discover your next address
@@ -254,29 +254,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-[#182d31] py-16 text-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col gap-8 rounded-[2rem] border border-white/10 bg-white/5 p-8 lg:flex-row lg:items-center lg:justify-between lg:p-10">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d8d0c5]">
-                  Enquire today
-                </p>
-                <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
-                  Start your property search with a trusted advisor.
-                </h2>
-              </div>
-
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <Button href="/contact" className="bg-white text-[#182d31] hover:bg-[#e9ece8]">
-                  Contact us
-                </Button>
-                <Button href="/properties" variant="secondary" className="border-white/20 bg-transparent text-white hover:bg-white/10">
-                  View listings
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
 
       <SiteFooter />

@@ -28,7 +28,7 @@ export function Button({
   disabled = false,
 }: ButtonProps) {
   const classes = [
-    "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f8f5f0] disabled:cursor-not-allowed active:translate-y-px active:scale-[0.99] motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[0_8px_18px_rgba(27,45,50,0.12)]",
+    "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f8f5f0] disabled:cursor-not-allowed active:translate-y-px active:scale-[0.99] motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[0_8px_18px_rgba(27,45,50,0.12)]",
     variantStyles[variant],
     className,
   ].join(" ");

@@ -32,7 +32,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="relative text-sm font-medium text-[#364a4f] transition-all duration-200 ease-out hover:text-[#1a2b2f] after:absolute after:-bottom-2 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[#1a2b2f] after:transition-transform after:duration-200 hover:after:scale-x-100"
+              className="relative text-sm font-medium text-[#364a4f] transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-[#1a2b2f] after:absolute after:-bottom-2 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[#1a2b2f] after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:scale-x-100"
             >
               {item.label}
             </Link>
@@ -41,7 +41,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <Button href="/contact" variant="secondary" className="hidden sm:inline-flex">
-            Book a Call
+            Call
           </Button>
           <Button href="/properties" className="hidden sm:inline-flex">
             Browse Homes
