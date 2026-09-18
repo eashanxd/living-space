@@ -18,9 +18,10 @@ type PropertyFiltersProps = {
   filters: Filters;
   onChange: (nextFilters: Filters) => void;
   onReset?: () => void;
+  locations?: readonly string[];
 };
 
-export function PropertyFilters({ filters, onChange, onReset }: PropertyFiltersProps) {
+export function PropertyFilters({ filters, onChange, onReset, locations }: PropertyFiltersProps) {
   const updateFilter = (key: keyof Filters, value: string) => {
     onChange({ ...filters, [key]: value });
   };
@@ -29,6 +30,8 @@ export function PropertyFilters({ filters, onChange, onReset }: PropertyFiltersP
     const { name, value } = event.target;
     updateFilter(name as keyof Filters, value);
   };
+
+  const availableLocations = locations ?? locationOptions;
 
   return (
     <div className="rounded-[1.5rem] border border-[#e7e0d7] bg-white p-4 shadow-[0_10px_25px_rgba(22,32,33,0.04)] sm:p-5">
@@ -55,7 +58,7 @@ export function PropertyFilters({ filters, onChange, onReset }: PropertyFiltersP
             onChange={handleSelect}
             className={selectClassName}
           >
-            {locationOptions.map((location) => (
+            {availableLocations.map((location) => (
               <option key={location} value={location === "All locations" ? "all" : location}>
                 {location}
               </option>

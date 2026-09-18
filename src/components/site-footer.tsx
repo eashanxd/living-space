@@ -1,9 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const footerLinks = {
   Company: [
     { label: "About", href: "/about" },
-    { label: "Locations", href: "/locations" },
+    { label: "Properties", href: "/properties" },
     { label: "Contact", href: "/contact" },
   ],
   Listings: [
@@ -18,16 +19,13 @@ export function SiteFooter() {
     <footer className="border-t border-[#e7e0d7] bg-[#f3efe9]">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.5fr_1fr_1fr] lg:px-8">
         <div>
-          <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1b2d32] text-sm font-semibold tracking-[0.22em] text-white">
-              LS
-            </div>
-            <div>
-              <div className="text-sm font-semibold tracking-[0.22em] text-[#1a2b2f]">
-                LIVING SPACE
-              </div>
-            </div>
-          </div>
+          <Image
+            src="/images/loving-space-logo.jpg"
+            alt="LIVING SPACE"
+            width={160}
+            height={40}
+            className="mb-4 h-auto w-40"
+          />
           <p className="max-w-sm text-sm leading-6 text-[#5f5a56]">
             Helping buyers, investors, and families discover homes that match their needs, location, and long-term goals.
           </p>

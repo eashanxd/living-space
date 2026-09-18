@@ -5,6 +5,15 @@ type PropertyCardProps = {
   property: Property;
 };
 
+function formatAvailableDate(value: string) {
+  return new Intl.DateTimeFormat("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${value}T00:00:00Z`));
+}
+
 export function PropertyCard({ property }: PropertyCardProps) {
   return (
     <article className="group overflow-hidden rounded-[1.5rem] border border-[#e7e0d7] bg-white shadow-[0_14px_30px_rgba(22,32,33,0.04)] transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-[#d4c9bf] hover:shadow-[0_18px_35px_rgba(22,32,33,0.08)] active:translate-y-0">
@@ -38,6 +47,39 @@ export function PropertyCard({ property }: PropertyCardProps) {
           <span>•</span>
           <span>{property.area.toLocaleString("en-IN")} sq ft</span>
         </div>
+
+        <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-[#eee5dc] pt-5 text-sm">
+          <div>
+            <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7a6d62]">Configuration</dt>
+            <dd className="mt-1 font-medium text-[#1a2b2f]">{property.configuration}</dd>
+          </div>
+          <div>
+            <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7a6d62]">Rent</dt>
+            <dd className="mt-1 font-medium text-[#1a2b2f]">
+              {property.rent === null ? "Sale only" : `${formatPrice(property.rent)} / month`}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7a6d62]">Plot Area</dt>
+            <dd className="mt-1 font-medium text-[#1a2b2f]">{property.plotArea}</dd>
+          </div>
+          <div>
+            <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7a6d62]">Furnishing</dt>
+            <dd className="mt-1 font-medium text-[#1a2b2f]">{property.furnishing}</dd>
+          </div>
+          <div>
+            <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7a6d62]">Available For</dt>
+            <dd className="mt-1 font-medium text-[#1a2b2f]">{property.availableFor}</dd>
+          </div>
+          <div>
+            <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7a6d62]">Available From</dt>
+            <dd className="mt-1 font-medium text-[#1a2b2f]">{formatAvailableDate(property.availableFrom)}</dd>
+          </div>
+          <div className="col-span-2">
+            <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7a6d62]">Posted By</dt>
+            <dd className="mt-1 font-medium text-[#1a2b2f]">{property.postedBy}</dd>
+          </div>
+        </dl>
 
         <div className="mt-6 flex items-center justify-between border-t border-[#eee5dc] pt-4">
           <span className="text-sm font-medium text-[#586d71]">{property.status === "available" ? "Ready to view" : formatStatusLabel(property.status)}</span>

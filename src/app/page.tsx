@@ -4,11 +4,12 @@ import { HomePropertySearch } from "@/components/home-property-search";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { primeLocations } from "@/data/location-data";
 
 const featuredProperties = [
   {
     title: "3 BHK Premium Apartment",
-    location: "Dwarka, Delhi",
+    location: "Anand Niketan",
     type: "Apartment",
     details: "1450 sq ft • 3 Bed • 2 Bath",
     price: "₹1.25 Cr",
@@ -16,7 +17,7 @@ const featuredProperties = [
   },
   {
     title: "Signature Villa Residence",
-    location: "Gurugram, Haryana",
+    location: "Anand Lok",
     type: "Villa",
     details: "2400 sq ft • 4 Bed • 3 Bath",
     price: "₹3.40 Cr",
@@ -24,21 +25,12 @@ const featuredProperties = [
   },
   {
     title: "Modern Commercial Suite",
-    location: "Noida, Uttar Pradesh",
+    location: "CR Park",
     type: "Commercial",
     details: "1800 sq ft • 2 Floor • Prime location",
     price: "₹2.90 Cr",
     status: "New Listing",
   },
-];
-
-const locations = [
-  "Dwarka",
-  "South Delhi",
-  "Gurugram",
-  "Noida",
-  "Greater Noida",
-  "Faridabad",
 ];
 
 export default function Home() {
@@ -71,20 +63,6 @@ export default function Home() {
                 </Button>
               </div>
 
-              <div className="animate-fade-up-delay mt-10 flex flex-wrap items-center gap-6 text-sm text-[#586d71]">
-                <div>
-                  <span className="block text-2xl font-semibold text-[#1a2b2f]">150+</span>
-                  Homes sold
-                </div>
-                <div>
-                  <span className="block text-2xl font-semibold text-[#1a2b2f]">12</span>
-                  Prime locations
-                </div>
-                <div>
-                  <span className="block text-2xl font-semibold text-[#1a2b2f]">4.9/5</span>
-                  Client satisfaction
-                </div>
-              </div>
             </div>
 
             <HomePropertySearch />
@@ -152,14 +130,15 @@ export default function Home() {
               align="center"
             />
 
-            <div className="mt-10 flex flex-wrap justify-center gap-3">
-              {locations.map((location) => (
-                <span
+            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {primeLocations.map((location) => (
+                <Link
                   key={location}
-                  className="rounded-full border border-[#d7d0c6] bg-white px-4 py-2 text-sm font-medium text-[#3c4d53]"
+                  href={`/properties?location=${encodeURIComponent(location)}`}
+                  className="group rounded-2xl border border-[#d7d0c6] bg-white px-4 py-4 text-center text-sm font-medium text-[#3c4d53] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-[#b8b0a4] hover:bg-[#fffdfa] hover:shadow-[0_10px_22px_rgba(22,32,33,0.07)] active:translate-y-px"
                 >
-                  {location}
-                </span>
+                  <span className="transition-colors duration-300 group-hover:text-[#1a2b2f]">{location}</span>
+                </Link>
               ))}
             </div>
           </div>
