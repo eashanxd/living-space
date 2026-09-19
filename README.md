@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LIVING SPACE
 
-## Getting Started
+A modern real-estate property discovery and enquiry platform built for **LIVING SPACE**, focused on residential properties across premium South Delhi neighbourhoods.
 
-First, run the development server:
+The project provides a public-facing property browsing experience along with a secure admin area for managing property listings and media.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Public Website
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Premium responsive landing page
+- Property discovery and browsing
+- Location-based property filtering
+- Property detail pages
+- Multi-image property galleries
+- Furnishing details
+- Property facilities
+- Rent and sale information
+- Property availability information
+- About page
+- Contact page
+- Responsive design for desktop, tablet, and mobile
+- Smooth, subtle UI interactions
 
-## Learn More
+### Admin
 
-To learn more about Next.js, take a look at the following resources:
+- Secure Supabase authentication
+- Protected admin dashboard
+- Add new properties
+- Upload property images
+- Upload property videos
+- Delete properties
+- Automatic media cleanup during deletion
+- Property status management
+- Property metadata management
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🏗️ Tech Stack
 
-## Deploy on Vercel
+### Frontend
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Next.js](https://nextjs.org/)
+- React
+- TypeScript
+- CSS
+- Lucide icons
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Backend / Infrastructure
+
+- [Supabase](https://supabase.com/)
+- PostgreSQL
+- Supabase Auth
+- Row Level Security (RLS)
+- Supabase Storage
+
+### Storage
+
+Two public Supabase Storage buckets are used:
+
+- `property-images`
+- `property-videos`
+
+---
+
+## 📁 Project Structure
+
+The project follows a structure similar to:
+
+```text
+src/
+├── app/
+│   ├── admin/
+│   │   ├── login/
+│   │   └── dashboard/
+│   │
+│   ├── properties/
+│   │   └── [propertyId]/
+│   │
+│   ├── about/
+│   ├── contact/
+│   └── page.tsx
+│
+├── components/
+│   ├── admin-property-form.tsx
+│   ├── admin-login-form.tsx
+│   ├── property-image-carousel.tsx
+│   └── ...
+│
+└── lib/
+    └── supabase/
+        ├── client.ts
+        ├── server.ts
+        └── proxy.ts
+
+public/
+└── images/
+
+supabase/
+└── migrations/
