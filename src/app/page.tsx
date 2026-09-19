@@ -5,35 +5,13 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { primeLocations } from "@/data/location-data";
+import { formatPrice } from "@/data/properties";
+import { getProperties } from "@/lib/properties";
 
-const featuredProperties = [
-  {
-    title: "3 BHK Premium Apartment",
-    location: "Anand Niketan",
-    type: "Apartment",
-    details: "1450 sq ft • 3 Bed • 2 Bath",
-    price: "₹1.25 Cr",
-    status: "Available",
-  },
-  {
-    title: "Signature Villa Residence",
-    location: "Anand Lok",
-    type: "Villa",
-    details: "2400 sq ft • 4 Bed • 3 Bath",
-    price: "₹3.40 Cr",
-    status: "Available",
-  },
-  {
-    title: "Modern Commercial Suite",
-    location: "CR Park",
-    type: "Commercial",
-    details: "1800 sq ft • 2 Floor • Prime location",
-    price: "₹2.90 Cr",
-    status: "New Listing",
-  },
-];
+export const dynamic = "force-dynamic";
 
-export default function Home() {
+export default async function Home() {
+  const featuredProperties = (await getProperties()).slice(0, 3);
   return (
     <>
       <SiteHeader />
@@ -85,7 +63,7 @@ export default function Home() {
                 <div className="h-56 bg-[linear-gradient(135deg,#d8d2ca,#f1ebdf)] p-5">
                   <div className="flex h-full items-end justify-between overflow-hidden rounded-[1.2rem] border border-white/50 bg-[radial-gradient(circle_at_top,#f5eee5,#d8d2ca_50%,#bfb5aa)] p-4 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
                     <span className="rounded-full bg-white/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#354c51]">
-                      {property.type}
+                      {property.propertyType}
                     </span>
                     <span className="rounded-full bg-[#1a2b2f] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white">
                       {property.status}
@@ -101,15 +79,15 @@ export default function Home() {
                         {property.title}
                       </h3>
                     </div>
-                    <span className="text-xl font-semibold text-[#1a2b2f]">{property.price}</span>
+                    <span className="text-xl font-semibold text-[#1a2b2f]">{formatPrice(property.price)}</span>
                   </div>
 
-                  <p className="mt-4 text-sm leading-6 text-[#5b5d5d]">{property.details}</p>
+                  <p className="mt-4 text-sm leading-6 text-[#5b5d5d]">{property.configuration} {property.plotArea ? `• ${property.plotArea}` : ""}</p>
 
                   <div className="mt-6 flex items-center justify-between border-t border-[#eee5dc] pt-4">
-                    <span className="text-sm font-medium text-[#586d71]">{property.type}</span>
+                    <span className="text-sm font-medium text-[#586d71]">{property.propertyType}</span>
                     <Link
-                      href="/properties"
+                      href={`/properties/${property.id}`}
                       className="text-sm font-semibold uppercase tracking-[0.16em] text-[#1a2b2f] transition-all duration-200 ease-out hover:text-[#56717a] hover:translate-x-0.5"
                     >
                       View details

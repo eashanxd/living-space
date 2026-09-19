@@ -1,7 +1,7 @@
 import { EnquiryForm } from "@/components/enquiry-form";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { getPropertyById } from "@/data/properties";
+import { getPropertyById } from "@/lib/properties";
 
 export default async function ContactPage({
   searchParams,
@@ -10,7 +10,7 @@ export default async function ContactPage({
 }) {
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
   const propertyId = resolvedSearchParams?.propertyId;
-  const property = propertyId ? getPropertyById(propertyId) : null;
+  const property = propertyId ? await getPropertyById(propertyId) : null;
 
   return (
     <>

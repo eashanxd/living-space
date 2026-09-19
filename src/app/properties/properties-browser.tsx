@@ -6,18 +6,19 @@ import { PropertyFilters } from "@/components/property-filters";
 import { PropertyGrid } from "@/components/property-grid";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { defaultFilters, demoProperties, filterProperties, type Filters } from "@/data/properties";
+import { defaultFilters, filterProperties, type Filters, type Property } from "@/data/properties";
 
 type PropertiesBrowserProps = {
   initialFilters: Filters;
+  properties: Property[];
 };
 
-export function PropertiesBrowser({ initialFilters }: PropertiesBrowserProps) {
+export function PropertiesBrowser({ initialFilters, properties }: PropertiesBrowserProps) {
   const [filters, setFilters] = useState<Filters>(initialFilters);
 
   const filteredProperties = useMemo(
-    () => filterProperties(demoProperties, filters),
-    [filters],
+    () => filterProperties(properties, filters),
+    [filters, properties],
   );
 
   const handleReset = () => setFilters(defaultFilters);

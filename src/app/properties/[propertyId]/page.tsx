@@ -1,14 +1,10 @@
 import { notFound } from "next/navigation";
 import { PropertyDetails } from "@/components/property-details";
-import { demoProperties, getPropertyById } from "@/data/properties";
+import { getPropertyById } from "@/lib/properties";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
-export async function generateStaticParams() {
-  return demoProperties.map((property) => ({
-    propertyId: property.propertyId,
-  }));
-}
+export const dynamic = "force-dynamic";
 
 export default async function PropertyDetailPage({
   params,
@@ -16,7 +12,7 @@ export default async function PropertyDetailPage({
   params: Promise<{ propertyId: string }>;
 }) {
   const { propertyId } = await params;
-  const property = getPropertyById(propertyId);
+  const property = await getPropertyById(propertyId);
 
   if (!property) {
     notFound();

@@ -683,7 +683,7 @@ This section should be updated as development progresses.
 Update this section whenever the primary development task changes.
 
 ```text
-Currently under development.
+Supabase Auth setup and the initial admin login flow are complete.
 ```
 
 ---

@@ -1,12 +1,127 @@
 import Link from "next/link";
+import {
+  BedDouble,
+  BellRing,
+  Building2,
+  CalendarDays,
+  CarFront,
+  CookingPot,
+  Droplets,
+  Fan,
+  Home,
+  IndianRupee,
+  Lightbulb,
+  Refrigerator,
+  Ruler,
+  ShieldCheck,
+  Sofa,
+  Tag,
+  Tv,
+  UserRound,
+  WashingMachine,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EnquiryForm } from "@/components/enquiry-form";
-import { formatPrice, formatStatusLabel, type Property } from "@/data/properties";
+import {
+  formatPrice,
+  formatStatusLabel,
+  facilityFieldOptions,
+  furnishingFieldOptions,
+  type Facilities,
+  type FurnishingDetails,
+  type Property,
+} from "@/data/properties";
 import { PropertyGallery } from "@/components/property-gallery";
 
 type PropertyDetailsProps = {
   property: Property;
 };
+
+const furnishingIcons: Record<keyof FurnishingDetails, typeof Home> = {
+  water_purifier: Droplets,
+  fan: Fan,
+  fridge: Refrigerator,
+  dining_table: Home,
+  geyser: Droplets,
+  stove: CookingPot,
+  light: Lightbulb,
+  ac: Fan,
+  chimney: CookingPot,
+  modular_kitchen: CookingPot,
+  wardrobe: Home,
+  microwave: CookingPot,
+  washing_machine: WashingMachine,
+  bed: BedDouble,
+  sofa: Sofa,
+  tv: Tv,
+};
+
+const facilityIcons: Record<keyof Facilities, typeof Home> = {
+  lifts: Building2,
+  covered_parking: CarFront,
+  open_parking: CarFront,
+  gated_society: ShieldCheck,
+  vaastu_compliant: Home,
+  security_guard: ShieldCheck,
+  visitor_parking: CarFront,
+  cctv_surveillance: BellRing,
+  central_air_conditioning: Fan,
+  high_ceiling_height: Home,
+  servant_room_separate_entry: Home,
+  false_ceiling_lighting: Lightbulb,
+  power_backup: BellRing,
+  piped_gas: CookingPot,
+  security_fire_alarm: ShieldCheck,
+};
+
+function getFeatureList(property: Property, mode: "furnishing" | "facility") {
+  if (mode === "furnishing") {
+    return furnishingFieldOptions.map(([key, label]) => ({ label, icon: furnishingIcons[key], enabled: property.furnishing_details[key] }));
+  }
+
+  return facilityFieldOptions.map(([key, label]) => ({ label, icon: facilityIcons[key], enabled: property.facilities[key] }));
+}
+
+function FeatureRow({ items, color, title }: { items: { label: string; icon: typeof Home; enabled: boolean }[]; color: string; title: string }) {
+  return (
+    <div className="mt-6">
+      <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#7a6d62]">{title}</h3>
+      <ul className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        {items.map((item) => {
+          const Icon = item.icon;
+          return (
+            <li
+              key={item.label}
+              className={`group flex items-center gap-3 rounded-2xl border border-[#eae0d5] bg-[#faf7f3] px-3 py-3 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-[#d5c7b5] hover:bg-[#f5f0ea] ${item.enabled ? "" : "opacity-60 grayscale"}`}
+            >
+              <span className={`flex h-9 w-9 items-center justify-center rounded-xl border ${item.enabled ? color : "border-[#d7d3cd] bg-[#f0eeeb] text-[#727675]"}`}>
+                <Icon className="h-4 w-4" />
+              </span>
+              <span className="truncate text-sm font-medium text-[#2d3e42]">{item.enabled ? item.label : `No ${item.label}`}</span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
+function PropertyFeatures({ property }: { property: Property }) {
+  const furnishingItems = getFeatureList(property, "furnishing");
+  const facilityItems = getFeatureList(property, "facility");
+
+  return (
+    <section aria-labelledby="property-features" className="mt-8 rounded-[1.6rem] border border-[#e8e1d8] bg-[#fbf8f4] p-4 sm:p-5">
+      <h2 id="property-features" className="sr-only">
+        Property features
+      </h2>
+      <FeatureRow items={furnishingItems} color="border-[#d8efe8] bg-[#edfdf8] text-[#0e8b75]" title="Furnishing Details" />
+      <div className="mt-6 border-t border-[#e9dfd5] pt-6">
+        <FeatureRow items={facilityItems} color="border-[#dfe8ff] bg-[#edf4ff] text-[#2570d9]" title="Facilities" />
+      </div>
+    </section>
+  );
+}
 
 export function PropertyDetails({ property }: PropertyDetailsProps) {
   const statusTone =
@@ -18,15 +133,65 @@ export function PropertyDetails({ property }: PropertyDetailsProps) {
           ? "bg-[#ede7d8] text-[#5d4a2d]"
           : "bg-[#f5f0eb] text-[#4d4a48]";
 
+  const overviewItems = [
+    {
+      label: "Configuration",
+      value: property.configuration,
+      tone: "bg-[#edf5ff] text-[#1f67c3]",
+      icon: Building2,
+    },
+    {
+      label: "Rent",
+      value: formatPrice(property.rent),
+      tone: "bg-[#fff6dd] text-[#c78a00]",
+      icon: IndianRupee,
+    },
+    {
+      label: "Plot Area",
+      value: property.plotArea,
+      tone: "bg-[#eefbf2] text-[#228a62]",
+      icon: Ruler,
+    },
+    {
+      label: "Furnishing",
+      value: property.furnishing,
+      tone: "bg-[#f3ecff] text-[#7344d0]",
+      icon: Sofa,
+    },
+    {
+      label: "Available For",
+      value: property.availableFor,
+      tone: "bg-[#fff2e8] text-[#d97a23]",
+      icon: Tag,
+    },
+    {
+      label: "Available From",
+      value: new Intl.DateTimeFormat("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+        timeZone: "UTC",
+      }).format(new Date(`${property.availableFrom}T00:00:00Z`)),
+      tone: "bg-[#eef8ff] text-[#0a6baf]",
+      icon: CalendarDays,
+    },
+    {
+      label: "Posted By",
+      value: property.postedBy,
+      tone: "bg-[#edf9f5] text-[#148066]",
+      icon: UserRound,
+    },
+  ];
+
   return (
     <div className="space-y-10">
-      <PropertyGallery gallery={property.gallery} title={property.title} />
+      <PropertyGallery gallery={property.images} videos={property.videos} title={property.title} />
 
       <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr]">
         <div>
           <div className="flex flex-wrap items-center gap-3">
             <span className="rounded-full border border-[#d9d1c7] bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#4d5b5e]">
-              {property.type}
+              {property.propertyType}
             </span>
             <span className={`rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] ${statusTone}`}>
               {formatStatusLabel(property.status)}
@@ -40,27 +205,54 @@ export function PropertyDetails({ property }: PropertyDetailsProps) {
           <p className="mt-3 text-lg text-[#54666b]">{property.location}</p>
 
           <div className="mt-6 flex flex-wrap gap-8 border-y border-[#e7e0d7] py-5 text-sm text-[#4e5a5d]">
-            {property.bhk ? <span>{property.bhk} BHK</span> : null}
-            <span>{property.area.toLocaleString("en-IN")} sq ft</span>
-            <span>{property.bathrooms} Bathrooms</span>
-            <span>{property.type}</span>
+            <span>{property.configuration}</span>
+            <span>{property.plotArea}</span>
+            <span>{property.propertyType}</span>
           </div>
 
-          <div className="mt-6">
-            <p className="text-sm uppercase tracking-[0.2em] text-[#7c6b5f]">Overview</p>
-            <p className="mt-3 max-w-2xl text-base leading-8 text-[#51585a]">{property.description}</p>
-          </div>
+          <section
+            aria-labelledby="property-overview"
+            className="mt-8 animate-fade-up rounded-[1.65rem] border border-[#e7dfd5] bg-[#f7f2ec] p-4 shadow-[0_12px_24px_rgba(27,45,50,0.04)] sm:p-5"
+          >
+            <h2 id="property-overview" className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#7a6d62]">
+              Property Overview
+            </h2>
+
+            <dl className="mt-4 grid gap-0 overflow-hidden rounded-[1.1rem] border border-[#e5d9ca] bg-[#fffefc] sm:grid-cols-2">
+              {overviewItems.map((item, index) => {
+                const Icon = item.icon;
+                const isLast = index === overviewItems.length - 1;
+
+                return (
+                  <div
+                    key={item.label}
+                    className={[
+                      "group flex items-start gap-3 border-b border-[#efe4d7] p-4 transition-all duration-200 ease-out hover:bg-[#f9f4ee] sm:p-5",
+                      index % 2 === 0 && !isLast ? "sm:border-r" : "",
+                      isLast ? "border-b-0 sm:col-span-2" : "",
+                    ].join(" ")}
+                  >
+                    <span className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-transparent ${item.tone} transition-transform duration-200 ease-out group-hover:-translate-y-0.5`}>
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <div className="min-w-0">
+                      <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#7a6d62]">{item.label}</dt>
+                      <dd className="mt-1.5 text-base font-semibold leading-snug text-[#1d2d31] sm:text-lg">
+                        {item.value}
+                      </dd>
+                    </div>
+                  </div>
+                );
+              })}
+            </dl>
+          </section>
 
           <div className="mt-8">
-            <p className="text-sm uppercase tracking-[0.2em] text-[#7c6b5f]">Amenities</p>
-            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-              {property.amenities.map((amenity) => (
-                <li key={amenity} className="rounded-2xl border border-[#e7e0d7] bg-[#faf7f3] px-4 py-3 text-sm text-[#3d4d52]">
-                  {amenity}
-                </li>
-              ))}
-            </ul>
+            <p className="text-sm uppercase tracking-[0.2em] text-[#7c6b5f]">Description</p>
+            <p className="mt-3 max-w-2xl text-base leading-8 text-[#51585a]">{property.about}</p>
           </div>
+
+          <PropertyFeatures property={property} />
         </div>
 
         <aside className="rounded-[1.75rem] border border-[#e7e0d7] bg-white p-6 shadow-[0_14px_30px_rgba(22,32,33,0.04)]">
