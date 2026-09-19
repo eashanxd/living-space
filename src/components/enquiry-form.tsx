@@ -2,7 +2,7 @@
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
-import { formatPrice, type Property } from "@/data/properties";
+import { getPropertyPriceLabel, type Property } from "@/data/properties";
 
 type EnquiryFormValues = {
   name: string;
@@ -130,7 +130,7 @@ export function EnquiryForm({ property }: EnquiryFormProps) {
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#7c6b5f]">Interested in</p>
           <p className="mt-2 text-xl font-semibold text-[#1a2b2f]">{property.title}</p>
           <p className="mt-1 text-sm text-[#54666b]">Property ID: {property.id}</p>
-          <p className="mt-3 text-sm font-medium text-[#1a2b2f]">{formatPrice(property.price)}</p>
+          <p className="mt-3 text-sm font-medium text-[#1a2b2f]">{getPropertyPriceLabel(property) ?? "Contact for pricing"}</p>
         </div>
       ) : (
         <div className="mb-6 rounded-[1.2rem] border border-[#e7e0d7] bg-[#faf7f3] p-4">

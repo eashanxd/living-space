@@ -25,6 +25,7 @@ import { EnquiryForm } from "@/components/enquiry-form";
 import {
   formatPrice,
   formatStatusLabel,
+  getPropertyPriceLabel,
   facilityFieldOptions,
   furnishingFieldOptions,
   type Facilities,
@@ -124,6 +125,7 @@ function PropertyFeatures({ property }: { property: Property }) {
 }
 
 export function PropertyDetails({ property }: PropertyDetailsProps) {
+  const priceLabel = getPropertyPriceLabel(property);
   const statusTone =
     property.status === "available"
       ? "bg-[#e8f3ea] text-[#234d3b]"
@@ -142,7 +144,7 @@ export function PropertyDetails({ property }: PropertyDetailsProps) {
     },
     {
       label: "Rent",
-      value: formatPrice(property.rent),
+      value: property.rent === null ? "" : formatPrice(property.rent),
       tone: "bg-[#fff6dd] text-[#c78a00]",
       icon: IndianRupee,
     },
@@ -258,7 +260,7 @@ export function PropertyDetails({ property }: PropertyDetailsProps) {
         <aside className="rounded-[1.75rem] border border-[#e7e0d7] bg-white p-6 shadow-[0_14px_30px_rgba(22,32,33,0.04)]">
           <div className="text-sm uppercase tracking-[0.18em] text-[#7c6b5f]">Starting from</div>
           <div className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-[#1a2b2f]">
-            {formatPrice(property.price)}
+            {priceLabel ?? "Contact for pricing"}
           </div>
 
           <div className="mt-6 space-y-3">
