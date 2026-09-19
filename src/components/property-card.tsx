@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { formatPrice, formatStatusLabel, type Property } from "@/data/properties";
+import { formatStatusLabel, getPropertyPriceLabel, type Property } from "@/data/properties";
+import { PropertyImageCarousel } from "@/components/property-image-carousel";
 
 type PropertyCardProps = {
   property: Property;
@@ -22,9 +23,10 @@ const statusStyles: Record<Property["status"], string> = {
 };
 
 export function PropertyCard({ property }: PropertyCardProps) {
+  const priceLabel = getPropertyPriceLabel(property);
   const metadata = [
     { label: "Configuration", value: property.configuration },
-    { label: "Rent", value: formatPrice(property.rent) },
+    { label: "Pricing", value: getPropertyPriceLabel(property) ?? "" },
     { label: "Plot Area", value: property.plotArea },
     { label: "Furnishing", value: property.furnishing },
     { label: "Available For", value: property.availableFor },
@@ -36,10 +38,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
     <article className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-[#e8e0d7] bg-[#fffdfb] shadow-[0_12px_30px_rgba(25,36,43,0.04)] transition-all duration-[220ms] ease-out hover:-translate-y-1 hover:border-[#d9cbb8] hover:shadow-[0_18px_32px_rgba(25,36,43,0.08)] active:translate-y-0">
       <div className="relative overflow-hidden">
         <div className="relative aspect-[4/3] overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-[260ms] ease-out group-hover:scale-[1.03]"
-            style={property.images[0] ? { backgroundImage: `url("${property.images[0]}")` } : undefined}
-          />
+          <PropertyImageCarousel images={property.images} title={property.title} variant="card" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#10262b]/30 via-transparent to-white/10" />
           <span
             className={`absolute left-4 top-4 rounded-full border border-white/50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] shadow-[0_8px_20px_rgba(18,30,33,0.12)] backdrop-blur-sm transition-all duration-[220ms] ease-out group-hover:translate-y-[-1px] ${statusStyles[property.status]}`}
@@ -58,9 +57,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
             </h3>
             <p className="mt-2 text-sm text-[#5e6b6e]">{property.location}</p>
           </div>
-          <div className="shrink-0 rounded-full border border-[#eadfce] bg-[#f7f2ec] px-2.5 py-1.5 text-sm font-semibold text-[#1a2b2f]">
-            {formatPrice(property.price)}
-          </div>
+          {priceLabel ? <div className="shrink-0 rounded-full border border-[#eadfce] bg-[#f7f2ec] px-2.5 py-1.5 text-sm font-semibold text-[#1a2b2f]">{priceLabel}</div> : null}
         </div>
 
         <div className="mt-5 border-t border-[#efe7df] pt-4">

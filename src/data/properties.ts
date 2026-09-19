@@ -126,6 +126,22 @@ export function formatPrice(value: number | null) {
   return new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(value);
 }
 
+export function getPropertyPriceLabel(property: Pick<Property, "availableFor" | "rent" | "price">) {
+  const prices = property.availableFor === "Rent"
+    ? [property.rent === null ? null : `Rent ${formatPrice(property.rent)}`]
+    : property.availableFor === "Sale"
+      ? [property.price === null ? null : `Sale ${formatPrice(property.price)}`]
+      : property.availableFor === "Rent-Sale"
+        ? [
+            property.rent === null ? null : `Rent ${formatPrice(property.rent)}`,
+            property.price === null ? null : `Sale ${formatPrice(property.price)}`,
+          ]
+        : [property.price === null ? null : formatPrice(property.price)];
+
+  const availablePrices = prices.filter((value): value is string => Boolean(value));
+  return availablePrices.length ? availablePrices.join(" / ") : null;
+}
+
 export function formatStatusLabel(status: PropertyStatus) {
   return { available: "Available", sold: "Sold", rented: "Rented", unavailable: "Unavailable" }[status];
 }

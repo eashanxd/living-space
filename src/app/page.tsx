@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { primeLocations } from "@/data/location-data";
 import { formatPrice } from "@/data/properties";
 import { getProperties } from "@/lib/properties";
+import { PropertyImageCarousel } from "@/components/property-image-carousel";
 
 export const dynamic = "force-dynamic";
 
@@ -61,14 +62,19 @@ export default async function Home() {
                 className="group overflow-hidden rounded-[1.5rem] border border-[#e7e0d7] bg-white shadow-[0_14px_30px_rgba(22,32,33,0.04)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#d4c9bf] hover:shadow-[0_18px_35px_rgba(22,32,33,0.08)]"
               >
                 <div className="h-56 bg-[linear-gradient(135deg,#d8d2ca,#f1ebdf)] p-5">
-                  <div className="flex h-full items-end justify-between overflow-hidden rounded-[1.2rem] border border-white/50 bg-[radial-gradient(circle_at_top,#f5eee5,#d8d2ca_50%,#bfb5aa)] p-4 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+                  <PropertyImageCarousel
+                    images={property.images}
+                    title={property.title}
+                    variant="featured"
+                    overlay={<div className="absolute inset-0 flex items-end justify-between p-4 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
                     <span className="rounded-full bg-white/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#354c51]">
                       {property.propertyType}
                     </span>
                     <span className="rounded-full bg-[#1a2b2f] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white">
                       {property.status}
                     </span>
-                  </div>
+                  </div>}
+                  />
                 </div>
 
                 <div className="p-6">

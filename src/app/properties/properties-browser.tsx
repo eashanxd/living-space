@@ -30,11 +30,11 @@ export function PropertiesBrowser({ initialFilters, properties }: PropertiesBrow
         <section className="border-b border-[#e7e0d7] bg-[#f4efe9]">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#7c6b5f]">Properties</p>
-            <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-[-0.05em] text-[#1a2b2f] sm:text-5xl">
-              Discover homes and investment opportunities across Delhi NCR.
+            <h1 className="mt-4 max-w-5xl text-4xl font-semibold tracking-[-0.05em] text-[#1a2b2f] sm:text-5xl">
+              Discover South Delhi&apos;s Finest Rental Homes
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-[#54504a]">
-              Browse a curated selection of property options, compare locations, and narrow the search around the right price, type, and layout for your next move.
+            <p className="mt-5 max-w-4xl text-lg leading-8 text-[#54504a]">
+              Exclusive luxury apartments, independent floors and villas in the capital&apos;s most prestigious neighbourhoods.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/contact">Request a shortlist</Button>
