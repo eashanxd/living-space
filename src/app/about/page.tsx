@@ -3,9 +3,9 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 const aboutImages = [
-  { alt: "Furnished living room arranged for everyday living", position: "object-[28%_center]" },
-  { alt: "Warm interior detail from a LIVING SPACE property", position: "object-center" },
-  { alt: "Elegant property interior with considered finishes", position: "object-[72%_center]" },
+  { src: "/images/about-image-1.jpg", alt: "Furnished living room arranged for everyday living", position: "object-center" },
+  { src: "/images/about-image-2.jpg", alt: "Warm interior detail from a LIVING SPACE property", position: "object-center" },
+  { src: "/images/about-image-3.jpg", alt: "Elegant property interior with considered finishes", position: "object-center" },
 ];
 
 export default function AboutPage() {
@@ -47,14 +47,14 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="space-y-5 lg:pt-2">
+          <div className="flex flex-col gap-5 lg:h-full lg:pt-2">
             {aboutImages.map((image, index) => (
               <div
                 key={image.alt}
-                className={`group relative overflow-hidden rounded-[1.5rem] border border-[#e7e0d7] bg-[#e9e1d8] shadow-[0_14px_30px_rgba(22,32,33,0.05)] ${index === 1 ? "aspect-[1.18/1]" : "aspect-[1.35/1]"}`}
+                className={`group relative overflow-hidden border border-[#e7e0d7] bg-[#e9e1d8] shadow-[0_14px_30px_rgba(22,32,33,0.05)] lg:min-h-0 lg:flex-1 ${index === 1 ? "aspect-[1.18/1] lg:aspect-auto" : "aspect-[1.35/1] lg:aspect-auto"}`}
               >
                 <Image
-                  src="/images/living-room.png"
+                  src={image.src}
                   alt={image.alt}
                   fill
                   sizes="(max-width: 1023px) 100vw, 42vw"

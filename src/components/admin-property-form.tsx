@@ -18,10 +18,10 @@ const propertyTypes = ["Apartment", "Villa", "Builder Floor"] as const;
 const furnishingOptions = ["Fully Furnished", "Semi Furnished", "Unfurnished"] as const;
 const availableForOptions = ["Rent", "Sale", "Rent-Sale"] as const;
 const statusOptions = [
-  ["available", "Available"],
-  ["sold", "Sold"],
-  ["rented", "Rented"],
-  ["unavailable", "Unavailable"],
+  ["Available", "Available"],
+  ["Sold", "Sold"],
+  ["Rented", "Rented"],
+  ["Unavailable", "Unavailable"],
 ] as const;
 
 const inputClassName = "w-full rounded-xl border border-[#dfe3df] bg-white px-3.5 py-3 text-sm text-[#25373d] outline-none transition focus:border-[#1a2b2f] focus:ring-2 focus:ring-[#dfe9e8] disabled:cursor-not-allowed disabled:bg-[#f4f1ed]";
@@ -65,7 +65,7 @@ function createInitialValues(): FormValues {
     availableFor: "",
     availableFrom: "",
     postedBy: "",
-    status: "available",
+    status: "Available",
     about: "",
     furnishing_details: { ...defaultFurnishingDetails },
     facilities: { ...defaultFacilities },

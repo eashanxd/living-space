@@ -103,7 +103,7 @@ export default async function Home() {
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
             <SectionHeading
               eyebrow="Locations"
-              title="Explore the neighborhoods that define daily life"
+              title="Explore the premium locations of South Delhi"
               description="From premium residential enclaves to high-demand commercial corridors, we focus on areas with strong lifestyle value and long-term potential."
               align="center"
             />
@@ -140,30 +140,31 @@ export default async function Home() {
                 eyebrow="Why LIVING SPACE"
                 title="Clear guidance grounded in real market understanding"
                 description="We simplify the process of finding the right property by focusing on fit, transparency, and long-term value."
+                descriptionClassName="text-justify"
               />
 
               <div className="mt-8 grid gap-5 sm:grid-cols-2">
                 <div className="rounded-2xl border border-[#e7e0d7] bg-[#faf7f3] p-5">
                   <h3 className="text-lg font-semibold text-[#1a2b2f]">Curated opportunities</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#5b5d5d]">
+                  <p className="mt-2 text-justify text-sm leading-6 text-[#5b5d5d]">
                     Quality listings selected for relevance, demand, and fit with buyer goals.
                   </p>
                 </div>
                 <div className="rounded-2xl border border-[#e7e0d7] bg-[#faf7f3] p-5">
                   <h3 className="text-lg font-semibold text-[#1a2b2f]">Honest guidance</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#5b5d5d]">
+                  <p className="mt-2 text-justify text-sm leading-6 text-[#5b5d5d]">
                     Practical advice designed around your preferences, budget, and timeline.
                   </p>
                 </div>
                 <div className="rounded-2xl border border-[#e7e0d7] bg-[#faf7f3] p-5">
                   <h3 className="text-lg font-semibold text-[#1a2b2f]">Location-led decisions</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#5b5d5d]">
+                  <p className="mt-2 text-justify text-sm leading-6 text-[#5b5d5d]">
                     Insight into neighborhood value, accessibility, and future growth potential.
                   </p>
                 </div>
                 <div className="rounded-2xl border border-[#e7e0d7] bg-[#faf7f3] p-5">
                   <h3 className="text-lg font-semibold text-[#1a2b2f]">End-to-end support</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#5b5d5d]">
+                  <p className="mt-2 text-justify text-sm leading-6 text-[#5b5d5d]">
                     From first enquiry to final decision, every step stays clear and focused.
                   </p>
                 </div>

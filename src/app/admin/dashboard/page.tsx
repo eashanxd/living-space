@@ -2,6 +2,8 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import { AdminLogoutButton } from "@/components/admin-logout-button";
 import { AdminPropertyForm } from "@/components/admin-property-form";
+import { AdminPropertyList } from "@/components/admin-property-list";
+import { getProperties } from "@/lib/properties";
 import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -11,6 +13,8 @@ export default async function AdminDashboardPage() {
   const { data: claims } = await supabase.auth.getClaims();
 
   if (!claims) redirect("/admin/login");
+
+  const properties = await getProperties();
 
   return (
     <main className="min-h-screen bg-[#f8f5f0] px-4 py-8 text-[#1a2b2f] sm:px-6 lg:px-8 lg:py-10">
@@ -25,6 +29,7 @@ export default async function AdminDashboardPage() {
           <p className="mt-3 max-w-2xl text-base leading-7 text-[#586d71]">Create a listing with its details, furnishing profile, facilities, and property media. It will appear on the public site after it is saved.</p>
         </section>
         <AdminPropertyForm />
+        <AdminPropertyList initialProperties={properties} />
       </div>
     </main>
   );
